@@ -40,7 +40,7 @@ function Contact() {
   };
 
   const copyToken = (token) => {
-    navigator.clipboard.writeText(token).catch(() => {});
+    navigator.clipboard.writeText(token).catch(() => { });
   };
 
   return (
