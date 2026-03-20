@@ -9,7 +9,7 @@ function Footer() {
           <div className="footer-brand">
             <div className="footer-logo">
               <FiPrinter style={{ display: "inline", marginRight: 8 }} />
-              print<span>Ngo</span>
+              Rush<span>Print</span>
             </div>
             <p>
               Your one-stop shop for all printing needs. We deliver premium
@@ -40,7 +40,7 @@ function Footer() {
           <div className="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li><a href="#">support@printngo.com</a></li>
+              <li><a href="mailto:rushprint.store@gmail.com">rushprint.store@gmail.com</a></li>
               <li><a href="#">+1 (555) 123-4567</a></li>
               <li><a href="#">123 Print Street, NY</a></li>
             </ul>
@@ -48,7 +48,7 @@ function Footer() {
         </div>
 
         <div className="footer-bottom">
-          &copy; {new Date().getFullYear()} printNgo. All rights reserved.
+          &copy; {new Date().getFullYear()} RushPrint. All rights reserved.
         </div>
       </div>
     </footer>
