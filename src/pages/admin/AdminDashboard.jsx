@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { APP_URL } from "../../config";
 import {
   FiPrinter, FiLogOut, FiLayout, FiBox, FiMail, FiUsers,
   FiEdit2, FiTrash2, FiPlus, FiSave, FiX, FiSend, FiCheck,
@@ -465,7 +466,7 @@ function EmailTab({ token, toast }) {
   <div style="padding:32px;background:#fff;border:1px solid #e0e0e0">
     <h2 style="color:#1a1a2e">Hello from RushPrint! 👋</h2>
     <p style="color:#555;line-height:1.7">We have exciting news for you. Premium quality printing at unbeatable prices.</p>
-    <a href="http://localhost:3000" style="display:inline-block;background:#ff6b35;color:#fff;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:600;margin-top:16px">Shop Now</a>
+    <a href="${APP_URL}" style="display:inline-block;background:#ff6b35;color:#fff;padding:14px 28px;border-radius:50px;text-decoration:none;font-weight:600;margin-top:16px">Shop Now</a>
   </div>
   <div style="padding:20px;text-align:center;color:#999;font-size:13px;background:#f8f9fa">
     © ${new Date().getFullYear()} RushPrint. All rights reserved.
@@ -597,7 +598,7 @@ function OverviewTab({ token }) {
         <h3>Quick Links</h3>
         <p style={{ color: "#888", marginTop: 6 }}>Use the sidebar tabs to manage Banner, Products, and send Email blasts.</p>
         <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-          <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Website</a>
+          <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Website</a>
         </div>
       </div>
     </div>
