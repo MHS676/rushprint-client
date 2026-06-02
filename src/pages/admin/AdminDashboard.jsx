@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { APP_URL } from "../../config";
 import {
   FiPrinter, FiLogOut, FiLayout, FiBox, FiMail, FiUsers,
@@ -8,6 +8,45 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CloudinaryUpload from "../../components/CloudinaryUpload";
+
+// ─── Rich Text Editor ────────────────────────────────────────────────────────
+function RichTextEditor({ value, onChange }) {
+  const editorRef = useRef(null);
+
+  useEffect(() => {
+    if (editorRef.current && editorRef.current.innerHTML !== (value || "")) {
+      editorRef.current.innerHTML = value || "";
+    }
+  }, [value]);
+
+  const exec = (cmd, val = null) => {
+    document.execCommand(cmd, false, val);
+    editorRef.current?.focus();
+  };
+
+  return (
+    <div className="rte-container">
+      <div className="rte-toolbar">
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("bold"); }} title="Bold"><b>B</b></button>
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("italic"); }} title="Italic"><i>I</i></button>
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("underline"); }} title="Underline"><u>U</u></button>
+        <span className="rte-sep" />
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("formatBlock", "h3"); }} title="Heading">H</button>
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("formatBlock", "p"); }} title="Paragraph">P</button>
+        <span className="rte-sep" />
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("insertUnorderedList"); }} title="Bullet list">• List</button>
+        <button type="button" className="rte-btn" onMouseDown={(e) => { e.preventDefault(); exec("insertOrderedList"); }} title="Numbered list">1. List</button>
+      </div>
+      <div
+        ref={editorRef}
+        className="rte-editor"
+        contentEditable
+        suppressContentEditableWarning
+        onInput={() => onChange(editorRef.current?.innerHTML || "")}
+      />
+    </div>
+  );
+}
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 function useAdminFetch(url, token) {
@@ -300,7 +339,13 @@ function ProductsTab({ token, toast }) {
                 </select>
               </div>
             </div>
-            <F label="Description" k="description" textarea />
+            <div className="admin-field">
+              <label>Description</label>
+              <RichTextEditor
+                value={editing.description || ""}
+                onChange={(val) => setEditing({ ...editing, description: val })}
+              />
+            </div>
             <div className="admin-field" style={{ marginTop: 12 }}>
               <label>Colors <small style={{ color: "#9ca3af" }}>(comma-separated, e.g. Red, Blue, Black)</small></label>
               <input value={editing.colors || ""} onChange={(e) => setEditing({ ...editing, colors: e.target.value })} placeholder="Red, Blue, Green, Black" />

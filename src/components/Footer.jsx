@@ -15,6 +15,7 @@ function Footer() {
               Your one-stop shop for all printing needs. We deliver premium
               quality prints with fast turnaround and the best prices.
             </p>
+            <p className="footer-tagline">Serving businesses nationwide across the US.</p>
           </div>
 
           <div className="footer-col">
@@ -30,10 +31,11 @@ function Footer() {
           <div className="footer-col">
             <h4>Products</h4>
             <ul>
-              <li><a href="#">Business Cards</a></li>
-              <li><a href="#">Canvas Prints</a></li>
-              <li><a href="#">T-Shirts</a></li>
-              <li><a href="#">Stickers</a></li>
+              <li><a href="#">Wristbands</a></li>
+              <li><a href="#">Koozies</a></li>
+              <li><a href="#">Mugs</a></li>
+              <li><a href="#">Lanyards</a></li>
+              <li><a href="#">Cups</a></li>
             </ul>
           </div>
 
@@ -42,7 +44,6 @@ function Footer() {
             <ul>
               <li><a href="mailto:rushprint.store@gmail.com">rushprint.store@gmail.com</a></li>
               <li><a href="#">+1 (555) 123-4567</a></li>
-              <li><a href="#">123 Print Street, NY</a></li>
             </ul>
           </div>
         </div>

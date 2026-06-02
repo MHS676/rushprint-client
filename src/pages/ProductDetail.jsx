@@ -60,6 +60,10 @@ function ProductDetail() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [shippingCity, setShippingCity] = useState("");
+  const [shippingState, setShippingState] = useState("");
+  const [shippingZip, setShippingZip] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState("");
@@ -79,6 +83,10 @@ function ProductDetail() {
 
   const handleSendQuote = async () => {
     if (!email.trim()) { setSendError("Please enter your email address."); return; }
+    if (!phone.trim()) { setSendError("Please enter your phone number."); return; }
+    if (!shippingAddress.trim() || !shippingCity.trim() || !shippingState.trim() || !shippingZip.trim()) {
+      setSendError("Please complete your shipping address."); return;
+    }
     const hp = product.lowerQty && product.lowerUnitPrice;
     if (hp && !selectedTier) { setSendError("Please select Option 1 or Option 2 from the pricing section above."); return; }
     setSendError(""); setSending(true);
@@ -94,11 +102,12 @@ function ProductDetail() {
           color: selectedColors.join(", "),
           unitPrice: hp ? tUnit : Number(product.price),
           totalCost: hp ? tTotal : Number(product.price),
+          shippingAddress, shippingCity, shippingState, shippingZip,
           message,
         }),
       });
       const d = await res.json();
-      if (d.success) { setShowSuccess(true); setName(""); setEmail(""); setPhone(""); setMessage(""); }
+      if (d.success) { setShowSuccess(true); setName(""); setEmail(""); setPhone(""); setShippingAddress(""); setShippingCity(""); setShippingState(""); setShippingZip(""); setMessage(""); }
       else { setSendError(d.message || "Failed to send. Try again."); }
     } catch { setSendError("Network error. Please try again."); }
     finally { setSending(false); }
@@ -177,7 +186,7 @@ function ProductDetail() {
               </div>
             )}
 
-            <p className="description">{product.description}</p>
+            <p className="description" dangerouslySetInnerHTML={{ __html: product.description }} />
 
             {/* ── Colors ── */}
             {colorList.length > 0 && (
@@ -274,8 +283,29 @@ function ProductDetail() {
             </div>
             <div className="quote-form-row">
               <div className="quote-field">
-                <label>Phone (optional)</label>
+                <label>Phone *</label>
                 <input type="tel" placeholder="+1 555 000 0000" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              </div>
+              <div className="quote-field" />
+            </div>
+            <div className="quote-field">
+              <label>Shipping Address *</label>
+              <input type="text" placeholder="Street address" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)} />
+            </div>
+            <div className="quote-form-row">
+              <div className="quote-field">
+                <label>City *</label>
+                <input type="text" placeholder="City" value={shippingCity} onChange={(e) => setShippingCity(e.target.value)} />
+              </div>
+              <div className="quote-field">
+                <label>State *</label>
+                <input type="text" placeholder="State" value={shippingState} onChange={(e) => setShippingState(e.target.value)} />
+              </div>
+            </div>
+            <div className="quote-form-row">
+              <div className="quote-field">
+                <label>ZIP Code *</label>
+                <input type="text" placeholder="ZIP" value={shippingZip} onChange={(e) => setShippingZip(e.target.value)} />
               </div>
               <div className="quote-field" />
             </div>

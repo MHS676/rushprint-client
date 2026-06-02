@@ -559,7 +559,8 @@ img {
 .product-detail-image img {
   width: 100%;
   height: 450px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f9fafb;
 }
 
 .product-detail-info {
@@ -777,6 +778,13 @@ img {
   padding-top: 24px;
   text-align: center;
   font-size: 0.85rem;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 8px;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
@@ -1481,6 +1489,54 @@ img {
   font-weight: 700; color: #374151; font-size: 0.88rem;
   padding: 12px 0 8px; border-top: 1px solid #e5e7eb; margin-top: 16px;
 }
+
+/* ─── RICH TEXT EDITOR ──────────────────────────────────────────────────────── */
+.rte-container {
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+}
+.rte-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+}
+.rte-btn {
+  padding: 4px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #374151;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1.4;
+}
+.rte-btn:hover { background: #e5e7eb; border-color: #9ca3af; }
+.rte-sep {
+  width: 1px;
+  height: 20px;
+  background: #d1d5db;
+  margin: 0 4px;
+}
+.rte-editor {
+  min-height: 140px;
+  padding: 12px 14px;
+  font-size: 0.93rem;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  outline: none;
+  line-height: 1.7;
+}
+.rte-editor:focus { background: #fff; }
+.rte-editor h3 { font-size: 1rem; font-weight: 700; margin: 8px 0 4px; }
+.rte-editor ul, .rte-editor ol { padding-left: 20px; margin: 6px 0; }
+.rte-editor li { margin-bottom: 4px; }
 
 /* ─── PRODUCT COLORS ────────────────────────────────────────────────────────── */
 .pd-colors-section { margin: 18px 0; }

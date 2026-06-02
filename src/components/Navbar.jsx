@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FiPrinter, FiSearch, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
+import { FiPrinter, FiSearch, FiMenu, FiX } from "react-icons/fi";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +44,6 @@ function Navbar() {
         <div className="navbar-actions">
           <button className="icon-btn" title="Search">
             <FiSearch />
-          </button>
-          <button className="icon-btn" title="Cart">
-            <FiShoppingCart />
           </button>
           <button
             className="mobile-toggle"
