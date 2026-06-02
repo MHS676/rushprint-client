@@ -90,9 +90,9 @@ function ProductDetail() {
     const hp = product.lowerQty && product.lowerUnitPrice;
     if (hp && !selectedTier) { setSendError("Please select Option 1 or Option 2 from the pricing section above."); return; }
     setSendError(""); setSending(true);
-    const tQty  = selectedTier === "higher" ? product.higherQty       : product.lowerQty;
+    const tQty = selectedTier === "higher" ? product.higherQty : product.lowerQty;
     const tUnit = selectedTier === "higher" ? Number(product.higherUnitPrice) : Number(product.lowerUnitPrice);
-    const tTotal= selectedTier === "higher" ? Number(product.higherTotalCost) : Number(product.lowerTotalCost);
+    const tTotal = selectedTier === "higher" ? Number(product.higherTotalCost) : Number(product.lowerTotalCost);
     try {
       const res = await fetch("/api/quote", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -131,9 +131,9 @@ function ProductDetail() {
     else setSelectedColors((p) => (p[0] === c ? [] : [c]));
   };
 
-  const tierQty   = selectedTier === "higher" ? product.higherQty : product.lowerQty;
-  const tierUnit  = selectedTier === "higher" ? Number(product.higherUnitPrice)  : Number(product.lowerUnitPrice);
-  const tierTotal = selectedTier === "higher" ? Number(product.higherTotalCost)  : Number(product.lowerTotalCost);
+  const tierQty = selectedTier === "higher" ? product.higherQty : product.lowerQty;
+  const tierUnit = selectedTier === "higher" ? Number(product.higherUnitPrice) : Number(product.lowerUnitPrice);
+  const tierTotal = selectedTier === "higher" ? Number(product.higherTotalCost) : Number(product.lowerTotalCost);
 
   const stars = Array.from({ length: 5 }, (_, i) => (
     <FiStar key={i}
